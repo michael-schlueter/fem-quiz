@@ -1,0 +1,33 @@
+/* -------------------- */
+/* Custom Properties    */
+/* -------------------- */
+
+:root {
+  /* colors */
+  --clr-purple: hsl(277, 91%, 56%);
+  --clr-darknavy: hsl(216, 25%, 25%);
+  --clr-navy: hsl(215, 27%, 32%);
+  --clr-lightblue: hsl(216, 47%, 78%);
+  --clr-lightgrey: hsl(220, 38%, 97%);
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-red: hsl(0, 82%, 63%);
+
+  /* font-weights */
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-bold: 500;
+
+  /* font-sizes */
+  --fs-200: 0.75rem;
+  --fs-300: 1rem;
+  --fs-400: 1.5rem;
+  --fs-500: 1.75rem;
+  --fs-700: 4rem;
+  --fs-900: 9rem;
+
+  /* font-family */
+  --ff-sans: 'Rubik', sans-serif;
+}
+
+
+
