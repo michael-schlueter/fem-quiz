@@ -70,6 +70,10 @@ h4 {
   text-wrap: balance;
 }
 
+button {
+  all: unset;
+}
+
 h1 {
   font-size: var(--fs-900);
   font-weight: var(--fw-bold);
@@ -88,4 +92,54 @@ h3 {
 h4 {
   font-size: var(--fs-500);
   font-weight: var(--fw-bold);
+}
+
+.wrapper {
+  max-width: 1160px;
+  margin-inline: auto;
+}
+
+header {
+  margin-block: 85px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+  padding: 8px;
+  margin-right: 24px;
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.switch-root {
+  width: 48px;
+  height: 28px;
+  background-color: var(--clr-purple);
+  border-radius: 9999px;
+  border-color: var(--clr-purple);
+  position: relative;
+}
+
+.switch-thumb {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 9999px;
+  transition: transform 100ms;
+  transform: translateX(4px);
+  will-change: transform;
+}
+.switch-thumb[data-state='checked'] {
+  transform: translateX(24px);
 }
