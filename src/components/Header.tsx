@@ -3,15 +3,17 @@ import DarkModeToggle from "./DarkModeToggle";
 export default function Header() {
   return (
     <header>
-      <div className="category">
+      <div className="header-category">
         <div className="logo-container">
-          <img
-            className="logo"
-            src="/assets/images/icon-accessibility.svg"
-            alt="accessibility icon"
-          />
+          <div className="icon icon-accessibility">
+            <img
+              className="logo"
+              src="/assets/images/icon-accessibility.svg"
+              alt="accessibility icon"
+            />
+          </div>
         </div>
-        <h4>Accessibility</h4>
+        <h5>Accessibility</h5>
       </div>
       <DarkModeToggle />
     </header>
