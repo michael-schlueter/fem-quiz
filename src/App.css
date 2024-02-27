@@ -111,9 +111,9 @@ h5 {
 
 header {
   margin-block: 85px;
+  height: 56px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .header-category {
@@ -130,6 +130,7 @@ header {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-left: auto;
 }
 
 .switch-root {
@@ -226,7 +227,7 @@ header {
   background-color: hsla(147, 80%, 73%, 0.3);
 }
 
-.icon-js {
+.icon-javascript {
   background-color: hsla(240, 73%, 88%, 0.3);
 }
 

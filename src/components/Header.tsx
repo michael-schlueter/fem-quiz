@@ -1,20 +1,27 @@
+import { Quiz } from "../lib/types";
 import DarkModeToggle from "./DarkModeToggle";
 
-export default function Header() {
+type HeaderProps = {
+  activeQuiz: Quiz | null;
+};
+
+export default function Header({ activeQuiz }: HeaderProps) {
   return (
     <header>
-      <div className="header-category">
-        <div className="logo-container">
-          <div className="icon icon-accessibility">
-            <img
-              className="logo"
-              src="/assets/images/icon-accessibility.svg"
-              alt="accessibility icon"
-            />
+      {activeQuiz && (
+        <div className="header-category">
+          <div className="logo-container">
+            <div className={`icon icon-${activeQuiz.title.toLowerCase()}`}>
+              <img
+                className="logo"
+                src={activeQuiz.icon}
+                alt={`${activeQuiz.title.toLowerCase()} icon`}
+              />
+            </div>
           </div>
+          <h5>{activeQuiz.title}</h5>
         </div>
-        <h5>Accessibility</h5>
-      </div>
+      )}
       <DarkModeToggle />
     </header>
   );
