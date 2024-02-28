@@ -264,6 +264,10 @@ header {
   padding-left: 20px;
 }
 
+.answer-button:hover {
+  cursor: pointer;
+}
+
 .answer {
   display: flex;
   align-items: center;
@@ -291,6 +295,10 @@ header {
   background-color: var(--clr-purple);
   border-radius: 24px;
   padding-block: 32px;
+}
+
+.submit-btn:hover {
+  cursor: pointer;
 }
 
 .ProgressRoot {
