@@ -13,7 +13,7 @@ export default function WelcomeScreen({ onQuizChange }: WelcomeScreenProps) {
           <h3>Welcome to the</h3>
           <h2>Frontend Quiz!</h2>
         </div>
-        <p>Pick a subject to get started.</p>
+        <p className="sub-heading">Pick a subject to get started.</p>
       </div>
       <ul className="categories">
         {data.quizzes.map((quiz, index) => (
