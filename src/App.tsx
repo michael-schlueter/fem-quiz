@@ -6,7 +6,7 @@ import { Quiz } from "./lib/types";
 import QuestionScreen from "./components/QuestionScreen";
 // Test only
 import data from "../src/lib/data.json"
-import FinishScreen from "./components/FinishScreen";
+import CompletionScreen from "./components/CompletionScreen";
 
 type GameStatus = "starting" | "running" | "finished";
 
@@ -33,7 +33,7 @@ function App() {
       <Header activeQuiz={activeQuiz} />
       {gameStatus === "starting" && <WelcomeScreen onQuizChange={handleQuizChange} />}
       {gameStatus === "running" && <QuestionScreen activeQuiz={activeQuiz} onFinish={handleFinishGame} onScore={handleIncreaseScore} />}
-      {gameStatus === "finished" && <FinishScreen score={score} />}
+      {gameStatus === "finished" && <CompletionScreen score={score} activeQuiz={activeQuiz} />}
     </div>
   );
 }
