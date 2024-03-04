@@ -4,11 +4,13 @@ import Button from "./Button";
 type CompletionScreenProps = {
   score: number;
   activeQuiz: Quiz | null;
+  onRestart: () => void;
 };
 
 export default function CompletionScreen({
   score,
   activeQuiz,
+  onRestart,
 }: CompletionScreenProps) {
   return (
     <div className="completion-wrapper">
@@ -35,7 +37,7 @@ export default function CompletionScreen({
             <p className="sub-heading">out of 10</p>
           </div>
         </div>
-        <Button>Play Again</Button>
+        <Button onClick={onRestart}>Play Again</Button>
       </div>
     </div>
   );

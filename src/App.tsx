@@ -24,6 +24,10 @@ function App() {
     setGameStatus('finished');
   }
 
+  function handleRestartQuiz() {
+    setGameStatus('starting');
+  }
+
   function handleIncreaseScore() {
     setScore(prev => prev + 1);
   }
@@ -33,7 +37,7 @@ function App() {
       <Header activeQuiz={activeQuiz} />
       {gameStatus === "starting" && <WelcomeScreen onQuizChange={handleQuizChange} />}
       {gameStatus === "running" && <QuestionScreen activeQuiz={activeQuiz} onFinish={handleFinishGame} onScore={handleIncreaseScore} />}
-      {gameStatus === "finished" && <CompletionScreen score={score} activeQuiz={activeQuiz} />}
+      {gameStatus === "finished" && <CompletionScreen score={score} activeQuiz={activeQuiz} onRestart={handleRestartQuiz} />}
     </div>
   );
 }
