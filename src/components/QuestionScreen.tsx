@@ -7,12 +7,14 @@ type QuestionScreenProps = {
   activeQuiz: Quiz | null;
   onFinish: () => void;
   onScore: () => void;
+  score: number;
 };
 
 export default function QuestionScreen({
   activeQuiz,
   onFinish,
   onScore,
+  score,
 }: QuestionScreenProps) {
   // state
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(1);
@@ -27,16 +29,16 @@ export default function QuestionScreen({
   // event handlers / actions
   function handleClick(index: number) {
     setIsError(false);
+    console.log("I run");
     if (index === 0) {
       setChosenOption(activeQuestion!.options[0]);
-    }
-    if (index === 1) {
+    } else if (index === 1) {
       setChosenOption(activeQuestion!.options[1]);
-    }
-    if (index === 2) {
+    } else if (index === 2) {
       setChosenOption(activeQuestion!.options[2]);
+    } else if (index === 3) {
+      setChosenOption(activeQuestion!.options[3]);
     }
-    setChosenOption(activeQuestion!.options[3]);
   }
 
   function handleSubmit() {
@@ -44,6 +46,9 @@ export default function QuestionScreen({
       setIsError(true);
       return;
     }
+
+    console.log(`chosenOption: ${chosenOption}`);
+    console.log(`answer: ${activeQuestion?.answer}`);
 
     if (chosenOption === activeQuestion!.answer) {
       onScore();
@@ -68,6 +73,7 @@ export default function QuestionScreen({
       <div className="question">
         <p className="sub-heading">{`Question ${activeQuestionIndex} of ${questionsLength}`}</p>
         <h4>{activeQuestion?.question}</h4>
+        <p>{score}</p>
         <ProgressBar
           progress={Math.floor((activeQuestionIndex / questionsLength) * 100)}
         />
@@ -75,9 +81,12 @@ export default function QuestionScreen({
       <div className="answer-wrapper">
         <ul className="categories">
           {activeQuestion?.options.map((option, index) => (
-            <li>
+            <li key={index}>
               <button
-                onClick={() => handleClick(index)}
+                onClick={() => {
+                  console.log(`Active index: ${index}`);
+                  handleClick(index);
+                }}
                 className="answer-button"
               >
                 <div className="answer">

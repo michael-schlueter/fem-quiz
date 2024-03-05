@@ -4,40 +4,57 @@ import Header from "./components/Header";
 import WelcomeScreen from "./components/WelcomeScreen";
 import { Quiz } from "./lib/types";
 import QuestionScreen from "./components/QuestionScreen";
-// Test only
-import data from "../src/lib/data.json"
 import CompletionScreen from "./components/CompletionScreen";
 
 type GameStatus = "starting" | "running" | "finished";
 
 function App() {
-  const [activeQuiz, setActiveQuiz] = useState<Quiz | null>(data.quizzes[3]);
-  const [gameStatus, setGameStatus] = useState<GameStatus>('starting');
+  const [activeQuiz, setActiveQuiz] = useState<Quiz | null>(null);
+  const [gameStatus, setGameStatus] = useState<GameStatus>("starting");
   const [score, setScore] = useState<number>(0);
+
+  console.log(score);
 
   function handleQuizChange(quiz: Quiz) {
     setActiveQuiz(quiz);
-    setGameStatus('running');
+    setGameStatus("running");
   }
 
   function handleFinishGame() {
-    setGameStatus('finished');
+    setGameStatus("finished");
   }
 
   function handleRestartQuiz() {
-    setGameStatus('starting');
+    setGameStatus("starting");
+    setActiveQuiz(null);
+    setScore(0);
   }
 
   function handleIncreaseScore() {
-    setScore(prev => prev + 1);
+    setScore((prev) => prev + 1);
   }
 
   return (
     <div className="wrapper">
       <Header activeQuiz={activeQuiz} />
-      {gameStatus === "starting" && <WelcomeScreen onQuizChange={handleQuizChange} />}
-      {gameStatus === "running" && <QuestionScreen activeQuiz={activeQuiz} onFinish={handleFinishGame} onScore={handleIncreaseScore} />}
-      {gameStatus === "finished" && <CompletionScreen score={score} activeQuiz={activeQuiz} onRestart={handleRestartQuiz} />}
+      {gameStatus === "starting" && (
+        <WelcomeScreen onQuizChange={handleQuizChange} />
+      )}
+      {gameStatus === "running" && (
+        <QuestionScreen
+          score={score}
+          activeQuiz={activeQuiz}
+          onFinish={handleFinishGame}
+          onScore={handleIncreaseScore}
+        />
+      )}
+      {gameStatus === "finished" && (
+        <CompletionScreen
+          score={score}
+          activeQuiz={activeQuiz}
+          onRestart={handleRestartQuiz}
+        />
+      )}
     </div>
   );
 }
