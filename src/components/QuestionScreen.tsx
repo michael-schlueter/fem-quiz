@@ -158,8 +158,13 @@ export default function QuestionScreen({
         {answerStatus !== "" && (
           <Button onClick={handleContinueQuiz}>Next Question</Button>
         )}
+        {isError && (
+          <div className="error-message">
+            <img src="./assets/images/icon-error.svg" alt="error icon" />
+            <p>Please select an answer</p>
+          </div>
+        )}
       </div>
-      {isError && <p>Please select an answer</p>}
     </main>
   );
 }
