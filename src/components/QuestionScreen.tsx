@@ -7,14 +7,12 @@ type QuestionScreenProps = {
   activeQuiz: Quiz | null;
   onFinish: () => void;
   onScore: () => void;
-  score: number;
 };
 
 export default function QuestionScreen({
   activeQuiz,
   onFinish,
   onScore,
-  score,
 }: QuestionScreenProps) {
   // state
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(1);
@@ -29,7 +27,6 @@ export default function QuestionScreen({
   // event handlers / actions
   function handleClick(index: number) {
     setIsError(false);
-    console.log("I run");
     if (index === 0) {
       setChosenOption(activeQuestion!.options[0]);
     } else if (index === 1) {
@@ -46,9 +43,6 @@ export default function QuestionScreen({
       setIsError(true);
       return;
     }
-
-    console.log(`chosenOption: ${chosenOption}`);
-    console.log(`answer: ${activeQuestion?.answer}`);
 
     if (chosenOption === activeQuestion!.answer) {
       onScore();
@@ -73,7 +67,6 @@ export default function QuestionScreen({
       <div className="question">
         <p className="sub-heading">{`Question ${activeQuestionIndex} of ${questionsLength}`}</p>
         <h4>{activeQuestion?.question}</h4>
-        <p>{score}</p>
         <ProgressBar
           progress={Math.floor((activeQuestionIndex / questionsLength) * 100)}
         />
@@ -81,16 +74,44 @@ export default function QuestionScreen({
       <div className="answer-wrapper">
         <ul className="categories">
           {activeQuestion?.options.map((option, index) => (
-            <li key={index}>
+            <li
+              className={`answers ${
+                option === chosenOption &&
+                chosenOption === activeQuestion.answer &&
+                answerStatus === "correct"
+                  ? "correct-border"
+                  : option === chosenOption &&
+                    chosenOption !== activeQuestion.answer &&
+                    answerStatus === "incorrect"
+                  ? "wrong-border"
+                  : option === chosenOption
+                  ? "selected-border"
+                  : ""
+              }`}
+              key={index}
+            >
               <button
                 onClick={() => {
-                  console.log(`Active index: ${index}`);
                   handleClick(index);
                 }}
                 className="answer-button"
               >
                 <div className="answer">
-                  <div className="answer-letter">
+                  <div
+                    className={`answer-letter ${
+                      option === chosenOption &&
+                      chosenOption === activeQuestion.answer &&
+                      answerStatus === "correct"
+                        ? "answer-letter-background-correct"
+                        : option === chosenOption &&
+                          chosenOption !== activeQuestion.answer &&
+                          answerStatus === "incorrect"
+                        ? "answer-letter-background-wrong"
+                        : option === chosenOption
+                        ? "answer-letter-background-selected"
+                        : "answer-letter-background"
+                    }`}
+                  >
                     <h5>
                       {index === 0
                         ? "A"
@@ -102,6 +123,30 @@ export default function QuestionScreen({
                     </h5>
                   </div>
                   <h5>{option}</h5>
+                  {option === chosenOption &&
+                  chosenOption === activeQuestion.answer &&
+                  answerStatus === "correct" ? (
+                    <img
+                      className="answer-status"
+                      src="./assets/images/icon-correct.svg"
+                      alt="correct indicator"
+                    />
+                  ) : null}
+                  {option === chosenOption &&
+                  chosenOption !== activeQuestion.answer &&
+                  answerStatus === "incorrect" ? (
+                    <img
+                      className="answer-status"
+                      src="./assets/images/icon-incorrect.svg"
+                      alt="incorrect indicator"
+                    />
+                  ) : null}
+                  {option === chosenOption && answerStatus === "" && (
+                    <div className="answer-status"></div>
+                  )}
+                  {option !== chosenOption && (
+                    <div className="answer-status"></div>
+                  )}
                 </div>
               </button>
             </li>

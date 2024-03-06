@@ -12,6 +12,7 @@
   --clr-lightgrey: hsl(220, 38%, 97%);
   --clr-white: hsl(0, 0%, 100%);
   --clr-red: hsl(0, 82%, 63%);
+  --clr-green: hsl(151, 70%, 50%);
 
   /* font-weights */
   --fw-light: 300;
@@ -70,7 +71,8 @@ video {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   line-height: 1;
   text-wrap: balance;
 }
@@ -257,11 +259,16 @@ header {
   line-height: 1.2;
 }
 
+.answers {
+  display: flex;
+  border: 3px solid transparent;
+}
+
 .answer-button {
   display: block;
   width: 100%;
-  padding-block: 18px;
-  padding-left: 20px;
+  padding-block: 15px;
+  padding-inline: 20px;
 }
 
 .answer-button:hover {
@@ -281,8 +288,13 @@ header {
   justify-content: center;
   align-items: center;
   padding: 16px 18px 12px 18px;
-  background-color: var(--clr-lightgrey);
   border-radius: 8px;
+}
+
+.answer-status {
+  margin-left: auto;
+  height: 40px;
+  width: 40px;
 }
 
 .submit-btn {
@@ -356,4 +368,37 @@ header {
 
 .result-header > h5 {
   padding-block: 14px;
+}
+
+/* Conditional Classnames */
+
+.selected-border {
+  border: 3px solid var(--clr-purple);
+}
+
+.correct-border {
+  border: 3px solid var(--clr-green);
+}
+
+.wrong-border {
+  border: 3px solid var(--clr-red);
+}
+
+.answer-letter-background {
+  background-color: var(--clr-lightgrey);
+}
+
+.answer-letter-background-selected {
+  background-color: var(--clr-purple);
+  color: var(--clr-white);
+}
+
+.answer-letter-background-correct {
+  background-color: var(--clr-green);
+  color: var(--clr-white);
+}
+
+.answer-letter-background-wrong {
+  background-color: var(--clr-red);
+  color: var(--clr-white);
 }

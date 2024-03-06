@@ -13,8 +13,6 @@ function App() {
   const [gameStatus, setGameStatus] = useState<GameStatus>("starting");
   const [score, setScore] = useState<number>(0);
 
-  console.log(score);
-
   function handleQuizChange(quiz: Quiz) {
     setActiveQuiz(quiz);
     setGameStatus("running");
@@ -42,7 +40,6 @@ function App() {
       )}
       {gameStatus === "running" && (
         <QuestionScreen
-          score={score}
           activeQuiz={activeQuiz}
           onFinish={handleFinishGame}
           onScore={handleIncreaseScore}
