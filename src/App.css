@@ -5,6 +5,7 @@
 :root {
   /* colors */
   --clr-purple: hsl(277, 91%, 56%);
+  --clr-lightpurple: hsla(277, 91%, 56%, 0.6);
   --clr-darknavy: hsl(216, 25%, 25%);
   --clr-greynavy: hsla(219, 13%, 44%, 1);
   --clr-navy: hsl(215, 27%, 32%);
@@ -311,6 +312,7 @@ header {
 
 .submit-btn:hover {
   cursor: pointer;
+  background-color: var(--clr-lightpurple);
 }
 
 .ProgressRoot {

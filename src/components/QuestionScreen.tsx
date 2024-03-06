@@ -131,7 +131,7 @@ export default function QuestionScreen({
                     />
                   ) : null}
                   {option === chosenOption &&
-                  chosenOption !== activeQuestion.answer &&
+                  option !== activeQuestion.answer &&
                   answerStatus === "incorrect" ? (
                     <img
                       className="answer-status"
@@ -139,12 +139,7 @@ export default function QuestionScreen({
                       alt="incorrect indicator"
                     />
                   ) : null}
-                  {option === chosenOption && answerStatus === "" && (
-                    <div className="answer-status"></div>
-                  )}
-                  {option !== chosenOption && option !== activeQuestion.answer && (
-                    <div className="answer-status"></div>
-                  )}
+                  {answerStatus === "" && <div className="answer-status"></div>}
                 </div>
               </button>
             </li>
