@@ -123,9 +123,7 @@ export default function QuestionScreen({
                     </h5>
                   </div>
                   <h5>{option}</h5>
-                  {option === chosenOption &&
-                  chosenOption === activeQuestion.answer &&
-                  answerStatus === "correct" ? (
+                  {option === activeQuestion.answer && answerStatus !== "" ? (
                     <img
                       className="answer-status"
                       src="./assets/images/icon-correct.svg"
@@ -144,7 +142,7 @@ export default function QuestionScreen({
                   {option === chosenOption && answerStatus === "" && (
                     <div className="answer-status"></div>
                   )}
-                  {option !== chosenOption && (
+                  {option !== chosenOption && option !== activeQuestion.answer && (
                     <div className="answer-status"></div>
                   )}
                 </div>
