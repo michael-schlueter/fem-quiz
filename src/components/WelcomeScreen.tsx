@@ -24,9 +24,9 @@ export default function WelcomeScreen({ onQuizChange }: WelcomeScreenProps) {
             >
               <div className="category">
                 <div className={`icon icon-${quiz.title.toLowerCase()}`}>
-                  <img src={quiz.icon}></img>
+                  <img className="quiz-icon" src={quiz.icon}></img>
                 </div>
-                <h5>{quiz.title}</h5>
+                <h5 className="quiz-title">{quiz.title}</h5>
               </div>
             </button>
           </li>

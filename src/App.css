@@ -22,11 +22,14 @@
 
   /* font-sizes */
   --fs-100: 0.75rem;
+  --fs-150: 0.875rem;
   --fs-200: 1rem;
+  --fs-250: 1.125rem;
   --fs-300: 1.25rem;
   --fs-400: 1.5rem;
   --fs-500: 1.75rem;
   --fs-600: 2.25rem;
+  --fs-650: 2.5rem;
   --fs-700: 4rem;
   --fs-900: 9rem;
 
@@ -206,6 +209,10 @@ header {
     height: 16px;
     width: 16px;
   }
+
+  .main-wrapper {
+    flex-direction: column;
+  }
 }
 
 /* Welcome Screen */
@@ -282,6 +289,54 @@ header {
 
 .icon-accessibility {
   background-color: hsla(273, 73%, 85%, 0.3);
+}
+
+@media (max-width: 768px) {
+  h2,
+  h3 {
+    font-size: var(--fs-650);
+  }
+
+  .sub-heading {
+    font-size: var(--fs-150);
+  }
+
+  .welcome {
+    gap: 16px;
+    padding-top: 32px;
+    padding-bottom: 40px;
+  }
+
+  .categories {
+    gap: 12px;
+    width: 100%;
+  }
+
+  .categories > li {
+    width: 100%;
+    background-color: var(--clr-white);
+    border-radius: 12px;
+  }
+
+  .category {
+    padding: 12px;
+    gap: 16px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  .quiz-icon {
+    width: 28.57px;
+    height: 28.57px;
+  }
+
+  .quiz-title {
+    font-size: var(--fs-250);
+  }
 }
 
 /* Question Screen */
