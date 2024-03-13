@@ -446,6 +446,73 @@ header {
   margin-top: 34px;
 }
 
+@media (max-width: 768px) {
+  .question-wrapper {
+    flex-direction: column;
+    padding-top: 32px;
+    gap: 40px;
+  }
+
+  .question {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .question > .sub-heading {
+    margin-bottom: 12px;
+    font-size: var(--fs-150);
+  }
+
+  .question > h4 {
+    font-size: var(--fs-300);
+    line-height: 1.2;
+  }
+
+  .ProgressRoot {
+    margin-top: 24px;
+  }
+
+  .answer-button {
+    padding-block: 9px;
+    padding-inline: 12px;
+  }
+
+  .answer {
+    gap: 16px;
+  }
+
+  .answer-letter {
+    width: 40px;
+    height: 40px;
+    padding: 16px 18px 16px 18px;
+  }
+
+  h5 {
+    font-size: var(--fs-250);
+  }
+
+  .answer-status {
+    height: 32px;
+    width: 32px;
+  }
+
+  .submit-btn {
+    margin-top: 12px;
+    border-radius: 12px;
+    padding-block: 19px;
+  }
+
+  .error-message {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .error-icon {
+    height: 32px;
+    width: 32px;
+  }
+}
+
 /* CompletionScreen  */
 
 .completion-wrapper {

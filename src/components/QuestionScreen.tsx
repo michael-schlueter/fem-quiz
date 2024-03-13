@@ -153,7 +153,7 @@ export default function QuestionScreen({
         )}
         {isError && (
           <div className="error-message">
-            <img src="./assets/images/icon-error.svg" alt="error icon" />
+            <img className="error-icon" src="./assets/images/icon-error.svg" alt="error icon" />
             <p>Please select an answer</p>
           </div>
         )}
