@@ -331,7 +331,6 @@ header {
 
   .categories > li {
     width: 100%;
-    background-color: var(--clr-white);
     border-radius: 12px;
   }
 
@@ -353,6 +352,28 @@ header {
 
   .quiz-title {
     font-size: var(--fs-250);
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .welcome {
+    gap: 16px;
+    padding-bottom: 64px;
+  }
+
+  .categories {
+    gap: 24px;
+    width: 100%;
+  }
+
+  .categories > li {
+    border-radius: 24px;
+    width: 100%;
+  }
+
+  .category {
+    padding: 12px;
   }
 }
 
