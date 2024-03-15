@@ -31,6 +31,7 @@
   --fs-600: 2.25rem;
   --fs-650: 2.5rem;
   --fs-700: 4rem;
+  --fs-750: 5.5rem;
   --fs-900: 9rem;
 
   /* font-family */
@@ -208,6 +209,22 @@ header {
   .switch-icon {
     height: 16px;
     width: 16px;
+  }
+
+  .main-wrapper {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    padding-inline: 64px;
+  }
+
+  header {
+    height: 56px;
+    margin-top: 40px;
+    margin-bottom: 50px;
   }
 
   .main-wrapper {
@@ -546,6 +563,45 @@ header {
 
 .result-header > h5 {
   padding-block: 14px;
+}
+
+@media (max-width: 768px) {
+  .completion-wrapper {
+    flex-direction: column;
+    margin-top: 32px;
+    gap: 40px;
+  }
+
+  .result-container {
+    gap: 16px;
+    padding: 0px;
+    border-radius: 12px;
+    padding-block: 32px;
+  }
+
+  .logo {
+    height: 28.57px;
+    width: 28.57px;
+  }
+
+  h1 {
+    font-size: var(--fs-750);
+  }
+
+  .result-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .result-header > h5 {
+    padding-block: 14px;
+  }
+
+  .score-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 }
 
 /* Conditional Classnames */
