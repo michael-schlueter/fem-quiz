@@ -551,6 +551,31 @@ header {
   }
 }
 
+@media (max-width: 1024px) {
+  .question-wrapper {
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .question {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .question > .sub-heading {
+    margin-bottom: 27px;
+  }
+
+  .ProgressRoot {
+    margin-top: 40px;
+  }
+
+  .answer-button {
+    padding-block: 12px;
+    padding-inline: 12px;
+  }
+}
+
 /* CompletionScreen  */
 
 .completion-wrapper {
