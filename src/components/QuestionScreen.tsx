@@ -95,6 +95,7 @@ export default function QuestionScreen({
                   handleClick(index);
                 }}
                 className="answer-button"
+                disabled={answerStatus !== ""}
               >
                 <div className="answer">
                   <div
