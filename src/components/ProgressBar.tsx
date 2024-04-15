@@ -1,16 +1,26 @@
-import * as Progress from "@radix-ui/react-progress";
+// import * as Progress from "@radix-ui/react-progress";
 
 type ProgressBarProps = {
   progress: number;
-}
+};
 
 export default function ProgressBar({ progress }: ProgressBarProps) {
   return (
-    <Progress.Root className="ProgressRoot" value={progress}>
-      <Progress.Indicator
-        className="ProgressIndicator"
-        style={{ transform: `translateX(-${100 - progress}%)` }}
-      />
-    </Progress.Root>
+    <div
+      className="progress-wrapper"
+      role="progressbar"
+      aria-valuenow={progress}
+      aria-valuemin={0}
+      aria-valuemax={100}
+    >
+      <div className="bar-wrapper">
+        <div
+          className="bar"
+          style={{
+            width: progress + "%",
+          }}
+        ></div>
+      </div>
+    </div>
   );
 }
