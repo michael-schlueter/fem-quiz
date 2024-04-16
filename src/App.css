@@ -169,6 +169,19 @@ header {
   justify-content: space-between;
 }
 
+.screen {
+  animation: fadeScreen 1s;
+}
+
+@keyframes fadeScreen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     padding-inline: 24px;
@@ -400,6 +413,7 @@ header {
 .answers {
   display: flex;
   border: 3px solid transparent;
+  transition: border 175ms;
 }
 
 .answer-button {
@@ -427,12 +441,22 @@ header {
   align-items: center;
   padding: 16px 18px 12px 18px;
   border-radius: 8px;
+  transition: background-color color 175ms;
 }
 
 .answer-status {
   margin-left: auto;
   height: 40px;
   width: 40px;
+  opacity: 0; /* Start with the icon hidden */
+  animation: fadeIn 0.17s forwards; /* Use a fade-in animation */
+  animation-delay: 0.17s; /* Delay the start of the animation */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* End with the icon visible */
+  }
 }
 
 .submit-btn {

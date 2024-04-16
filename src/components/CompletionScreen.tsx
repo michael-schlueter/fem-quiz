@@ -13,7 +13,7 @@ export default function CompletionScreen({
   onRestart,
 }: CompletionScreenProps) {
   return (
-    <div className="completion-wrapper">
+    <div className="completion-wrapper screen">
       <div className="headline-container">
         <h3>Quiz completed</h3>
         <h2>You scored...</h2>

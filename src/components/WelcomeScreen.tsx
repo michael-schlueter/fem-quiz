@@ -7,7 +7,7 @@ type WelcomeScreenProps = {
 
 export default function WelcomeScreen({ onQuizChange }: WelcomeScreenProps) {
   return (
-    <main className="main-wrapper">
+    <main className="main-wrapper screen">
       <div className="welcome">
         <div className="headline-container">
           <h3>Welcome to the</h3>

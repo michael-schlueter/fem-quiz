@@ -63,7 +63,7 @@ export default function QuestionScreen({
   }
 
   return (
-    <main className="question-wrapper">
+    <main className="question-wrapper screen">
       <div className="question">
         <p className="sub-heading">{`Question ${activeQuestionIndex} of ${questionsLength}`}</p>
         <h4>{activeQuestion?.question}</h4>
