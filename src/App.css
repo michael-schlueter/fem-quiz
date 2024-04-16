@@ -417,7 +417,10 @@ header {
 }
 
 .answer-button {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  overflow: hidden;
   width: 100%;
   padding-block: 15px;
   padding-inline: 20px;
@@ -425,12 +428,6 @@ header {
 
 .answer-button:hover {
   cursor: pointer;
-}
-
-.answer {
-  display: flex;
-  align-items: center;
-  gap: 32px;
 }
 
 .answer-letter {
@@ -535,9 +532,6 @@ header {
   .answer-button {
     padding-block: 9px;
     padding-inline: 12px;
-  }
-
-  .answer {
     gap: 16px;
   }
 

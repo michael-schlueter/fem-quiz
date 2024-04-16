@@ -97,51 +97,49 @@ export default function QuestionScreen({
                 className="answer-button"
                 disabled={answerStatus !== ""}
               >
-                <div className="answer">
-                  <div
-                    className={`answer-letter ${
-                      option === chosenOption &&
-                      chosenOption === activeQuestion.answer &&
-                      answerStatus === "correct"
-                        ? "answer-letter-background-correct"
-                        : option === chosenOption &&
-                          chosenOption !== activeQuestion.answer &&
-                          answerStatus === "incorrect"
-                        ? "answer-letter-background-wrong"
-                        : option === chosenOption
-                        ? "answer-letter-background-selected"
-                        : "answer-letter-background"
-                    }`}
-                  >
-                    <h5>
-                      {index === 0
-                        ? "A"
-                        : index === 1
-                        ? "B"
-                        : index === 2
-                        ? "C"
-                        : "D"}
-                    </h5>
-                  </div>
-                  <h5>{option}</h5>
-                  {option === activeQuestion.answer && answerStatus !== "" ? (
-                    <img
-                      className="answer-status"
-                      src="./assets/images/icon-correct.svg"
-                      alt="correct indicator"
-                    />
-                  ) : null}
-                  {option === chosenOption &&
-                  option !== activeQuestion.answer &&
-                  answerStatus === "incorrect" ? (
-                    <img
-                      className="answer-status"
-                      src="./assets/images/icon-incorrect.svg"
-                      alt="incorrect indicator"
-                    />
-                  ) : null}
-                  {answerStatus === "" && <div className="answer-status"></div>}
+                <div
+                  className={`answer-letter ${
+                    option === chosenOption &&
+                    chosenOption === activeQuestion.answer &&
+                    answerStatus === "correct"
+                      ? "answer-letter-background-correct"
+                      : option === chosenOption &&
+                        chosenOption !== activeQuestion.answer &&
+                        answerStatus === "incorrect"
+                      ? "answer-letter-background-wrong"
+                      : option === chosenOption
+                      ? "answer-letter-background-selected"
+                      : "answer-letter-background"
+                  }`}
+                >
+                  <h5>
+                    {index === 0
+                      ? "A"
+                      : index === 1
+                      ? "B"
+                      : index === 2
+                      ? "C"
+                      : "D"}
+                  </h5>
                 </div>
+                <h5>{option}</h5>
+                {option === activeQuestion.answer && answerStatus !== "" ? (
+                  <img
+                    className="answer-status"
+                    src="./assets/images/icon-correct.svg"
+                    alt="correct indicator"
+                  />
+                ) : null}
+                {option === chosenOption &&
+                option !== activeQuestion.answer &&
+                answerStatus === "incorrect" ? (
+                  <img
+                    className="answer-status"
+                    src="./assets/images/icon-incorrect.svg"
+                    alt="incorrect indicator"
+                  />
+                ) : null}
+                {answerStatus === "" && <div className="answer-status"></div>}
               </button>
             </li>
           ))}
@@ -154,7 +152,11 @@ export default function QuestionScreen({
         )}
         {isError && (
           <div className="error-message">
-            <img className="error-icon" src="./assets/images/icon-error.svg" alt="error icon" />
+            <img
+              className="error-icon"
+              src="./assets/images/icon-error.svg"
+              alt="error icon"
+            />
             <p>Please select an answer</p>
           </div>
         )}
