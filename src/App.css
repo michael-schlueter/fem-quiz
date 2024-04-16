@@ -504,7 +504,7 @@ header {
     line-height: 1.2;
   }
 
-  .ProgressRoot {
+  .progress-wrapper {
     margin-top: 24px;
   }
 
@@ -564,7 +564,7 @@ header {
     margin-bottom: 27px;
   }
 
-  .ProgressRoot {
+  .progress-wrapper {
     margin-top: 40px;
   }
 
