@@ -1,13 +1,25 @@
 import * as Switch from "@radix-ui/react-switch";
 
-export default function DarkModeToggle() {
+type DarkModeToggleProps = {
+  handleToggleDarkMode: () => void;
+};
+
+export default function DarkModeToggle({ handleToggleDarkMode }: DarkModeToggleProps) {
   return (
     <div className="switch-container">
-      <img className="switch-icon" src="/assets/images/icon-sun-dark.svg" alt=""></img>
-      <Switch.Root className="switch-root" id="darkmode">
+      <img
+        className="switch-icon"
+        src="/assets/images/icon-sun-dark.svg"
+        alt=""
+      ></img>
+      <Switch.Root className="switch-root" id="darkmode" onClick={handleToggleDarkMode}>
         <Switch.Thumb className="switch-thumb" />
       </Switch.Root>
-      <img className="switch-icon" src="/assets/images/icon-moon-dark.svg" alt=""></img>
+      <img
+        className="switch-icon"
+        src="/assets/images/icon-moon-dark.svg"
+        alt=""
+      ></img>
     </div>
   );
 }

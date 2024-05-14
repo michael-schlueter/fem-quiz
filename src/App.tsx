@@ -12,6 +12,7 @@ function App() {
   const [activeQuiz, setActiveQuiz] = useState<Quiz | null>(null);
   const [gameStatus, setGameStatus] = useState<GameStatus>("starting");
   const [score, setScore] = useState<number>(0);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   function handleQuizChange(quiz: Quiz) {
     setActiveQuiz(quiz);
@@ -32,9 +33,13 @@ function App() {
     setScore((prev) => prev + 1);
   }
 
+  function handleToggleDarkMode() {
+    setIsDarkMode((prev) => !prev);
+  }
+
   return (
     <div className="wrapper">
-      <Header activeQuiz={activeQuiz} />
+      <Header activeQuiz={activeQuiz} handleToggleDarkMode={handleToggleDarkMode} />
       {gameStatus === "starting" && (
         <WelcomeScreen onQuizChange={handleQuizChange} />
       )}

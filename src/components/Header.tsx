@@ -3,9 +3,10 @@ import DarkModeToggle from "./DarkModeToggle";
 
 type HeaderProps = {
   activeQuiz: Quiz | null;
+  handleToggleDarkMode: () => void;
 };
 
-export default function Header({ activeQuiz }: HeaderProps) {
+export default function Header({ activeQuiz, handleToggleDarkMode }: HeaderProps) {
   return (
     <header>
       {activeQuiz && (
@@ -22,7 +23,7 @@ export default function Header({ activeQuiz }: HeaderProps) {
           <h5>{activeQuiz.title}</h5>
         </div>
       )}
-      <DarkModeToggle />
+      <DarkModeToggle handleToggleDarkMode={handleToggleDarkMode} />
     </header>
   );
 }
