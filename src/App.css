@@ -164,6 +164,7 @@ header {
   border-radius: 9999px;
   border-color: var(--clr-purple);
   position: relative;
+  cursor: pointer;
 }
 
 .switch-thumb {
