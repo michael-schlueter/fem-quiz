@@ -15,6 +15,11 @@
   --clr-red: hsl(0, 82%, 63%);
   --clr-green: hsl(151, 70%, 50%);
 
+  --categories-fill: var(--clr-white);
+  --sub-heading-clr: var(--clr-greynavy);
+  --answer-letter-clr: var(--clr-greynavy);
+  --error-message-clr: var(--clr-red);
+
   /* font-weights */
   --fw-light: 300;
   --fw-normal: 400;
@@ -64,6 +69,17 @@ body {
   background-color: var(--clr-lightgrey);
   padding-inline: 140px;
   min-height: 100svh;
+}
+
+body.dark {
+  background-image: url("/assets/images/pattern-background-desktop-dark.svg");
+  background-color: var(--clr-darknavy);
+  color: var(--clr-white);
+
+  --categories-fill: var(--clr-navy);
+  --sub-heading-clr: var(--clr-lightblue);
+  --answer-letter-clr: var(--clr-greynavy);
+  --error-message-clr: var(--clr-white);
 }
 
 img,
@@ -257,7 +273,7 @@ header {
 .sub-heading {
   font-style: italic;
   font-size: var(--fs-300);
-  color: var(--clr-greynavy);
+  color: var(--sub-heading-clr);
 }
 
 .headline-container {
@@ -276,7 +292,7 @@ header {
 
 .categories > li {
   width: 100%;
-  background-color: var(--clr-white);
+  background-color: var(--categories-fill);
   border-radius: 24px;
   box-shadow: 0px 16px 40px 0px hsla(220, 29%, 66%, 0.14);
 }
@@ -308,19 +324,19 @@ header {
 }
 
 .icon-html {
-  background-color: hsla(29, 100%, 85%, 0.3);
+  background-color: hsla(22, 100%, 96%);
 }
 
 .icon-css {
-  background-color: hsla(147, 80%, 73%, 0.3);
+  background-color: hsla(151, 88%, 94%);
 }
 
 .icon-javascript {
-  background-color: hsla(240, 73%, 88%, 0.3);
+  background-color: hsla(225, 100%, 96%);
 }
 
 .icon-accessibility {
-  background-color: hsla(273, 73%, 85%, 0.3);
+  background-color: hsla(278, 100%, 95%);
 }
 
 @media (max-width: 768px) {
@@ -434,6 +450,7 @@ header {
 .answer-letter {
   width: 56px;
   height: 56px;
+  color: var(--answer-letter-clr);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -479,7 +496,7 @@ header {
   margin-top: 180px;
   padding: 4px;
   border-radius: 999px;
-  background: var(--clr-white);
+  background: var(--categories-fill);
 }
 
 .bar-wrapper {
@@ -497,7 +514,7 @@ header {
 .error-message {
   display: flex;
   width: 100%;
-  color: var(--clr-red);
+  color: var(--error-message-clr);
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -616,7 +633,7 @@ header {
   align-items: center;
   padding: 48px;
   border-radius: 24px;
-  background-color: var(--clr-white);
+  background-color: var(--categories-fill);
   box-shadow: 0px 16px 40px 0px hsla(220, 29%, 66%, 0.14);
 }
 

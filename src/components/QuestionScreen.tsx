@@ -112,7 +112,7 @@ export default function QuestionScreen({
                       : "answer-letter-background"
                   }`}
                 >
-                  <h5>
+                  <h5 className="answer-letter-heading">
                     {index === 0
                       ? "A"
                       : index === 1

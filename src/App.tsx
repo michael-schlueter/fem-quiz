@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import WelcomeScreen from "./components/WelcomeScreen";
@@ -13,6 +13,14 @@ function App() {
   const [gameStatus, setGameStatus] = useState<GameStatus>("starting");
   const [score, setScore] = useState<number>(0);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   function handleQuizChange(quiz: Quiz) {
     setActiveQuiz(quiz);
@@ -39,7 +47,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      <Header activeQuiz={activeQuiz} handleToggleDarkMode={handleToggleDarkMode} />
+      <Header activeQuiz={activeQuiz} toggleDarkMode={handleToggleDarkMode} isDarkMode={isDarkMode} />
       {gameStatus === "starting" && (
         <WelcomeScreen onQuizChange={handleQuizChange} />
       )}
