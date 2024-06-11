@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import WelcomeScreen from "./components/WelcomeScreen";
@@ -6,12 +6,39 @@ import { Quiz } from "./lib/types";
 import QuestionScreen from "./components/QuestionScreen";
 import CompletionScreen from "./components/CompletionScreen";
 
-type GameStatus = "starting" | "running" | "finished";
+type State = {
+  activeQuiz: Quiz | null;
+  gameStatus: "starting" | "running" | "finished";
+  score: number;
+};
+
+type Action =
+  | { type: "START_QUIZ"; quiz: Quiz }
+  | { type: "FINISH_QUIZ" }
+  | { type: "RESTART_QUIZ" }
+  | { type: "INCREASE_SCORE" };
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "START_QUIZ":
+      return { ...state, activeQuiz: action.quiz, gameStatus: "running" };
+    case "FINISH_QUIZ":
+      return { ...state, gameStatus: "finished" };
+    case "RESTART_QUIZ":
+      return { ...state, activeQuiz: null, gameStatus: "starting", score: 0 };
+    case "INCREASE_SCORE":
+      return { ...state, score: state.score + 1 };
+    default:
+      return state;
+  }
+}
 
 function App() {
-  const [activeQuiz, setActiveQuiz] = useState<Quiz | null>(null);
-  const [gameStatus, setGameStatus] = useState<GameStatus>("starting");
-  const [score, setScore] = useState<number>(0);
+  const [state, dispatch] = useReducer(reducer, {
+    activeQuiz: null,
+    gameStatus: "starting",
+    score: 0,
+  });
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,22 +50,19 @@ function App() {
   }, [isDarkMode]);
 
   function handleQuizChange(quiz: Quiz) {
-    setActiveQuiz(quiz);
-    setGameStatus("running");
+    dispatch({ type: "START_QUIZ", quiz });
   }
 
   function handleFinishGame() {
-    setGameStatus("finished");
+    dispatch({ type: "FINISH_QUIZ" });
   }
 
   function handleRestartQuiz() {
-    setGameStatus("starting");
-    setActiveQuiz(null);
-    setScore(0);
+    dispatch({ type: "RESTART_QUIZ" });
   }
 
   function handleIncreaseScore() {
-    setScore((prev) => prev + 1);
+    dispatch({ type: "INCREASE_SCORE" });
   }
 
   function handleToggleDarkMode() {
@@ -47,21 +71,25 @@ function App() {
 
   return (
     <div className="wrapper">
-      <Header activeQuiz={activeQuiz} toggleDarkMode={handleToggleDarkMode} isDarkMode={isDarkMode} />
-      {gameStatus === "starting" && (
+      <Header
+        activeQuiz={state.activeQuiz}
+        toggleDarkMode={handleToggleDarkMode}
+        isDarkMode={isDarkMode}
+      />
+      {state.gameStatus === "starting" && (
         <WelcomeScreen onQuizChange={handleQuizChange} />
       )}
-      {gameStatus === "running" && (
+      {state.gameStatus === "running" && (
         <QuestionScreen
-          activeQuiz={activeQuiz}
+          activeQuiz={state.activeQuiz}
           onFinish={handleFinishGame}
           onScore={handleIncreaseScore}
         />
       )}
-      {gameStatus === "finished" && (
+      {state.gameStatus === "finished" && (
         <CompletionScreen
-          score={score}
-          activeQuiz={activeQuiz}
+          score={state.score}
+          activeQuiz={state.activeQuiz}
           onRestart={handleRestartQuiz}
         />
       )}
