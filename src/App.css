@@ -140,7 +140,7 @@ header {
   align-items: center;
 }
 
-.header-category {
+.header__quiz-info {
   display: flex;
   align-items: center;
 }

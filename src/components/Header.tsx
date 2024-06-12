@@ -7,24 +7,39 @@ type HeaderProps = {
   isDarkMode: boolean;
 };
 
-export default function Header({ activeQuiz, toggleDarkMode, isDarkMode }: HeaderProps) {
+type QuizIconProps = {
+  quiz: Quiz;
+};
+
+function QuizIcon({ quiz }: QuizIconProps) {
+  return (
+    <div className="header__quiz-info">
+      <div className="logo-container">
+        <div className={`icon icon-${quiz.title.toLowerCase()}`}>
+          <img
+            className="logo"
+            src={quiz.icon}
+            alt={`${quiz.title.toLowerCase()} icon`}
+          />
+        </div>
+      </div>
+      <h5>{quiz.title}</h5>
+    </div>
+  );
+}
+
+export default function Header({
+  activeQuiz,
+  toggleDarkMode,
+  isDarkMode,
+}: HeaderProps) {
   return (
     <header>
-      {activeQuiz && (
-        <div className="header-category">
-          <div className="logo-container">
-            <div className={`icon icon-${activeQuiz.title.toLowerCase()}`}>
-              <img
-                className="logo"
-                src={activeQuiz.icon}
-                alt={`${activeQuiz.title.toLowerCase()} icon`}
-              />
-            </div>
-          </div>
-          <h5>{activeQuiz.title}</h5>
-        </div>
-      )}
-      <DarkModeToggle handleToggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
+      {activeQuiz && <QuizIcon quiz={activeQuiz} />}
+      <DarkModeToggle
+        handleToggleDarkMode={toggleDarkMode}
+        isDarkMode={isDarkMode}
+      />
     </header>
   );
 }
