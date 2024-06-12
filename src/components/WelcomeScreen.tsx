@@ -5,31 +5,43 @@ type WelcomeScreenProps = {
   onQuizChange: (quiz: Quiz) => void;
 };
 
+type QuizCategoryProps = {
+  quiz: Quiz;
+  onQuizChange: (quiz: Quiz) => void;
+};
+
+function QuizCategory({ quiz, onQuizChange }: QuizCategoryProps) {
+  return (
+    <li>
+      <button className="quiz-category__button" onClick={() => onQuizChange(quiz)}>
+        <div className="quiz-category__content">
+          <div className={`icon icon-${quiz.title.toLowerCase()}`}>
+            <img className="quiz-icon" src={quiz.icon} alt="quiz icon"></img>
+          </div>
+          <h5 className="quiz-category__title">{quiz.title}</h5>
+        </div>
+      </button>
+    </li>
+  );
+}
+
 export default function WelcomeScreen({ onQuizChange }: WelcomeScreenProps) {
   return (
     <main className="main-wrapper screen">
-      <div className="welcome">
-        <div className="headline-container">
+      <div className="welcome-screen__welcome">
+        <div className="welcome-screen__headline-container">
           <h3>Welcome to the</h3>
           <h2>Frontend Quiz!</h2>
         </div>
         <p className="sub-heading">Pick a subject to get started.</p>
       </div>
       <ul className="categories">
-        {data.quizzes.map((quiz, index) => (
-          <li key={index}>
-            <button
-              className="category-button"
-              onClick={() => onQuizChange(quiz)}
-            >
-              <div className="category">
-                <div className={`icon icon-${quiz.title.toLowerCase()}`}>
-                  <img className="quiz-icon" src={quiz.icon}></img>
-                </div>
-                <h5 className="quiz-title">{quiz.title}</h5>
-              </div>
-            </button>
-          </li>
+        {data.quizzes.map((quiz) => (
+          <QuizCategory
+            key={quiz.title}
+            quiz={quiz}
+            onQuizChange={onQuizChange}
+          />
         ))}
       </ul>
     </main>
