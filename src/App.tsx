@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import WelcomeScreen from "./components/WelcomeScreen";
@@ -49,25 +49,25 @@ function App() {
     }
   }, [isDarkMode]);
 
-  function handleQuizChange(quiz: Quiz) {
+  const handleQuizChange = useCallback((quiz: Quiz) => {
     dispatch({ type: "START_QUIZ", quiz });
-  }
+  }, []);
 
-  function handleFinishGame() {
+  const handleFinishGame = useCallback(() => {
     dispatch({ type: "FINISH_QUIZ" });
-  }
+  }, []);
 
-  function handleRestartQuiz() {
+  const handleRestartQuiz = useCallback(() => {
     dispatch({ type: "RESTART_QUIZ" });
-  }
+  }, []);
 
-  function handleIncreaseScore() {
+  const handleIncreaseScore = useCallback(() => {
     dispatch({ type: "INCREASE_SCORE" });
-  }
+  }, []);
 
-  function handleToggleDarkMode() {
+  const handleToggleDarkMode = useCallback(() => {
     setIsDarkMode((prev) => !prev);
-  }
+  }, []);
 
   return (
     <div className="wrapper">
