@@ -1,3 +1,4 @@
+import React from "react";
 import data from "../lib/data.json";
 import { Quiz } from "../lib/types";
 
@@ -10,20 +11,20 @@ type QuizCategoryProps = {
   onQuizChange: (quiz: Quiz) => void;
 };
 
-function QuizCategory({ quiz, onQuizChange }: QuizCategoryProps) {
+const QuizCategory = React.memo(({ quiz, onQuizChange }: QuizCategoryProps) => {
   return (
     <li>
       <button className="quiz-category__button" onClick={() => onQuizChange(quiz)}>
         <div className="quiz-category__content">
           <div className={`icon icon-${quiz.title.toLowerCase()}`}>
-            <img className="quiz-icon" src={quiz.icon} alt="quiz icon"></img>
+            <img className="quiz-icon" src={quiz.icon} alt={`${quiz.title} icon`}></img>
           </div>
           <h5 className="quiz-category__title">{quiz.title}</h5>
         </div>
       </button>
     </li>
   );
-}
+})
 
 export default function WelcomeScreen({ onQuizChange }: WelcomeScreenProps) {
   return (
