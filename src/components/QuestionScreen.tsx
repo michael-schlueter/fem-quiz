@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Quiz } from "../lib/types";
 import Button from "./Button";
 import ProgressBar from "./ProgressBar";
+import { MAX_QUESTIONS } from "../lib/constants";
 
 type QuestionScreenProps = {
   activeQuiz: Quiz | null;
@@ -25,17 +26,35 @@ export default function QuestionScreen({
   const questionsLength = activeQuiz?.questions.length || 0;
 
   // event handlers / actions
+
+  function getClassName(
+    option: string,
+    base: string,
+    correct: string,
+    wrong: string,
+    selected: string
+  ) {
+    if (option === chosenOption) {
+      if (
+        chosenOption === activeQuestion?.answer &&
+        answerStatus === "correct"
+      ) {
+        return `${base} ${correct}`;
+      }
+      if (
+        chosenOption !== activeQuestion?.answer &&
+        answerStatus === "incorrect"
+      ) {
+        return `${base} ${wrong}`;
+      }
+      return `${base} ${selected}`;
+    }
+    return base;
+  }
+
   function handleClick(index: number) {
     setIsError(false);
-    if (index === 0) {
-      setChosenOption(activeQuestion!.options[0]);
-    } else if (index === 1) {
-      setChosenOption(activeQuestion!.options[1]);
-    } else if (index === 2) {
-      setChosenOption(activeQuestion!.options[2]);
-    } else if (index === 3) {
-      setChosenOption(activeQuestion!.options[3]);
-    }
+    setChosenOption(activeQuestion!.options[index]);
   }
 
   function handleSubmit() {
@@ -53,7 +72,7 @@ export default function QuestionScreen({
   }
 
   function handleContinueQuiz() {
-    if (activeQuestionIndex === 10) {
+    if (activeQuestionIndex === MAX_QUESTIONS) {
       onFinish();
     } else {
       setActiveQuestionIndex((prev) => prev + 1);
@@ -62,11 +81,15 @@ export default function QuestionScreen({
     }
   }
 
+  if (!activeQuestion) {
+    return <div>Error loading question</div>
+  }
+
   return (
     <main className="question-wrapper screen">
       <div className="question">
         <p className="sub-heading">{`Question ${activeQuestionIndex} of ${questionsLength}`}</p>
-        <h4>{activeQuestion?.question}</h4>
+        <h4>{activeQuestion.question}</h4>
         <ProgressBar
           progress={Math.floor((activeQuestionIndex / questionsLength) * 100)}
         />
@@ -75,20 +98,14 @@ export default function QuestionScreen({
         <ul className="categories">
           {activeQuestion?.options.map((option, index) => (
             <li
-              className={`answers ${
-                option === chosenOption &&
-                chosenOption === activeQuestion.answer &&
-                answerStatus === "correct"
-                  ? "correct-border"
-                  : option === chosenOption &&
-                    chosenOption !== activeQuestion.answer &&
-                    answerStatus === "incorrect"
-                  ? "wrong-border"
-                  : option === chosenOption
-                  ? "selected-border"
-                  : ""
-              }`}
-              key={index}
+              className={getClassName(
+                option,
+                "answers",
+                "correct-border",
+                "wrong-border",
+                "selected-border"
+              )}
+              key={option}
             >
               <button
                 onClick={() => {
@@ -98,28 +115,16 @@ export default function QuestionScreen({
                 disabled={answerStatus !== ""}
               >
                 <div
-                  className={`answer-letter ${
-                    option === chosenOption &&
-                    chosenOption === activeQuestion.answer &&
-                    answerStatus === "correct"
-                      ? "answer-letter-background-correct"
-                      : option === chosenOption &&
-                        chosenOption !== activeQuestion.answer &&
-                        answerStatus === "incorrect"
-                      ? "answer-letter-background-wrong"
-                      : option === chosenOption
-                      ? "answer-letter-background-selected"
-                      : "answer-letter-background"
-                  }`}
+                  className={getClassName(
+                    option,
+                    "answer-letter",
+                    "answer-letter-background-correct",
+                    "answer-letter-background-wrong",
+                    "answer-letter-background-selected"
+                  )}
                 >
                   <h5 className="answer-letter-heading">
-                    {index === 0
-                      ? "A"
-                      : index === 1
-                      ? "B"
-                      : index === 2
-                      ? "C"
-                      : "D"}
+                    {["A", "B", "C", "D"][index]}
                   </h5>
                 </div>
                 <h5>{option}</h5>
