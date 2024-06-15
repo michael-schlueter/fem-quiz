@@ -167,6 +167,11 @@ header {
   cursor: pointer;
 }
 
+.switch-root:focus-visible {
+  outline: 3px solid var(--clr-purple);
+  outline-offset: 5px;
+}
+
 .switch-thumb {
   display: block;
   width: 20px;
@@ -301,10 +306,15 @@ header {
 .quiz-category__button {
   display: block;
   width: 100%;
+  border-radius: 24px;
 }
 
 .quiz-category__button:hover {
   cursor: pointer;
+}
+
+.quiz-category__button:focus-visible {
+  outline: 3px solid var(--clr-purple);
 }
 
 .quiz-category__content {
@@ -442,10 +452,15 @@ header {
   width: 100%;
   padding-block: 15px;
   padding-inline: 20px;
+  border-radius: 24px;
 }
 
 .answer-button:hover {
   cursor: pointer;
+}
+
+.answer-button:focus-visible {
+  outline: 3px solid var(--clr-purple);
 }
 
 .answer-letter {
@@ -491,6 +506,11 @@ header {
 .submit-btn:hover {
   cursor: pointer;
   background-color: var(--clr-lightpurple);
+}
+
+.submit-btn:focus-visible {
+  outline: 3px solid var(--clr-purple);
+  outline-offset: 5px;
 }
 
 .progress-wrapper {
