@@ -15,12 +15,12 @@ const QuizCategory = React.memo(({ quiz, onQuizChange }: QuizCategoryProps) => {
   return (
     <li>
       <button className="quiz-category__button" onClick={() => onQuizChange(quiz)}>
-        <div className="quiz-category__content">
+        <section className="quiz-category__content">
           <div className={`icon icon-${quiz.title.toLowerCase()}`}>
-            <img className="quiz-icon" src={quiz.icon} alt={`${quiz.title} icon`}></img>
+            <img className="quiz-icon" src={quiz.icon} alt={`icon for quiz category ${quiz.title}`}></img>
           </div>
           <h5 className="quiz-category__title">{quiz.title}</h5>
-        </div>
+        </section>
       </button>
     </li>
   );
