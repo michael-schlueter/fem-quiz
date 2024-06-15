@@ -87,13 +87,13 @@ export default function QuestionScreen({
 
   return (
     <main className="question-wrapper screen">
-      <div className="question">
+      <section className="question">
         <p className="sub-heading">{`Question ${activeQuestionIndex} of ${questionsLength}`}</p>
         <h4>{activeQuestion.question}</h4>
         <ProgressBar
           progress={Math.floor((activeQuestionIndex / questionsLength) * 100)}
         />
-      </div>
+      </section>
       <div className="answer-wrapper">
         <ul className="categories">
           {activeQuestion?.options.map((option, index) => (
@@ -160,7 +160,7 @@ export default function QuestionScreen({
             <img
               className="error-icon"
               src="./assets/images/icon-error.svg"
-              alt="error icon"
+              alt="Error: No answer selected"
             />
             <p>Please select an answer</p>
           </div>
