@@ -13,18 +13,18 @@ type QuizIconProps = {
 
 function QuizIcon({ quiz }: QuizIconProps) {
   return (
-    <div className="header__quiz-info">
+    <section className="header__quiz-info">
       <div className="logo-container">
         <div className={`icon icon-${quiz.title.toLowerCase()}`}>
           <img
             className="logo"
             src={quiz.icon}
-            alt={`${quiz.title.toLowerCase()} icon`}
+            alt={`Logo for quiz category ${quiz.title}`}
           />
         </div>
       </div>
       <h5>{quiz.title}</h5>
-    </div>
+    </section>
   );
 }
 
