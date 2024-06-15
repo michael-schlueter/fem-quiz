@@ -10,23 +10,23 @@ type CompletionScreenProps = {
 function ResultHeader({ activeQuiz }: { activeQuiz: Quiz | null }) {
   const title = activeQuiz?.title.toLowerCase() || "";
   return (
-    <div className="result-header">
+    <section className="result-header">
       <div className="logo-container">
         <div className={`icon icon-${activeQuiz?.title.toLowerCase()}`}>
-          <img className="logo" src={activeQuiz?.icon || ""} alt={`${title} icon`} />
+          <img className="logo" src={activeQuiz?.icon || ""} alt={`Icon for quiz category ${title}`} />
         </div>
       </div>
       <h5>{activeQuiz?.title || "No title"}</h5>
-    </div>
+    </section>
   );
 }
 
 function ScoreContainer({ score }: { score: number }) {
   return (
-    <div className="score-container">
+    <section className="score-container">
       <h1>{score}</h1>
       <p className="sub-heading">out of 10</p>
-    </div>
+    </section>
   );
 }
 
