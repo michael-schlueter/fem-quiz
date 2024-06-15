@@ -39,7 +39,12 @@ function App() {
     gameStatus: "starting",
     score: 0,
   });
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+
+  // Initialize isDarkMode from localStorage or default to false
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    const saved = localStorage.getItem("darkMode");
+    return saved !== null ? JSON.parse(saved) : false;
+  });
 
   useEffect(() => {
     if (isDarkMode) {
@@ -47,6 +52,9 @@ function App() {
     } else {
       document.body.classList.remove("dark");
     }
+
+    // Save isDarkMode to localStorage whenever it changes
+    localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
   const handleQuizChange = useCallback((quiz: Quiz) => {
