@@ -28,6 +28,7 @@ export default function DarkModeToggle({
         className="switch-root"
         id="darkmode"
         onClick={handleToggleDarkMode}
+        data-testid="darkmode-switch"
       >
         <Switch.Thumb className="switch-thumb" />
       </Switch.Root>

@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import { expect, test, vi } from "vitest";
-import userEvent from '@testing-library/user-event'
 import Header from "../components/Header";
+import userEvent from "@testing-library/user-event";
 
-test("toggle dark mode on/off/on", async () => {
+test("toggles dark mode on/off/on", async () => {
   const mockToggleDarkMode = vi.fn();
   const user = userEvent.setup();
 
@@ -17,7 +17,7 @@ test("toggle dark mode on/off/on", async () => {
   );
 
   // find dark mode toggle
-  const toggleButton = screen.getByRole("button", { name: /darkmode/i });
+  const toggleButton = screen.getByTestId("darkmode-switch");
 
   // click the button
   await user.click(toggleButton);
