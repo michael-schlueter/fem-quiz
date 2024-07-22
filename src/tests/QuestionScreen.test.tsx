@@ -47,7 +47,31 @@ describe("handles answers in Quiz", () => {
     expect(correctOption).toHaveClass("answer-letter-background-correct");
   });
 
-  test("picks incorrect answer", async () => {});
+  test("picks incorrect answer", async () => {
+    render(
+        <QuestionScreen
+          activeQuiz={mockActiveQuiz}
+          onFinish={() => {}}
+          onScore={() => {}}
+        />
+      );
+      const user = userEvent.setup();
+  
+      // Simulate selecting the incorrect answer
+      const incorrectOptionButton = screen.getByRole("button", {
+        name: "D Hyper Text Markup Leveler",
+      });
+      await user.click(incorrectOptionButton);
+  
+      // Submit the answer
+      const submitButton = screen.getByRole("button", { name: "Submit Answer" });
+      await user.click(submitButton);
+  
+      // Assert outcome for an incorrect answer
+      const incorrectOptionLetter = screen.getByRole("heading", { name: "D" });
+      const incorrectOption = incorrectOptionLetter.parentElement;
+      expect(incorrectOption).toHaveClass("answer-letter-background-wrong");
+  });
 
   test("disables button if no answer is selected", () => {});
 });
