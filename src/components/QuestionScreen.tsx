@@ -88,7 +88,7 @@ export default function QuestionScreen({
   return (
     <main className="question-wrapper screen">
       <section className="question">
-        <p className="sub-heading">{`Question ${activeQuestionIndex} of ${questionsLength}`}</p>
+        <p className="sub-heading" data-testid="question-number">{`Question ${activeQuestionIndex} of ${questionsLength}`}</p>
         <h4>{activeQuestion.question}</h4>
         <ProgressBar
           progress={Math.floor((activeQuestionIndex / questionsLength) * 100)}

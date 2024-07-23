@@ -186,4 +186,34 @@ describe("handles answers in Quiz", () => {
     });
     expect(correctOptionButton).toBeDisabled();
   });
+
+  test("tracks number of answered questions", async () => {
+    render(
+      <QuestionScreen
+        activeQuiz={mockActiveQuiz}
+        onFinish={() => {}}
+        onScore={() => {}}
+      />
+    );
+    const user = userEvent.setup();
+
+    // number of questions starts with 1
+    const questionNumber = screen.getByTestId("question-number");
+    expect(questionNumber).toHaveTextContent("Question 1");
+
+    // Simulate answering the first question
+    const answerOptionButton = screen.getByRole("button", {
+      name: "C Hyper Text Markup Language",
+    });
+    await user.click(answerOptionButton);
+    const submitButton = screen.getByRole("button", { name: "Submit Answer" });
+    await user.click(submitButton);
+    const nextQuestionButton = screen.getByRole("button", {
+      name: "Next Question",
+    });
+    await user.click(nextQuestionButton);
+
+    // number of questions increases to 2
+    expect(questionNumber).toHaveTextContent("Question 2");
+  });
 });
