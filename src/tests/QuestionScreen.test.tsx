@@ -48,29 +48,48 @@ describe("handles answers in Quiz", () => {
 
   test("picks incorrect answer", async () => {
     render(
-        <QuestionScreen
-          activeQuiz={mockActiveQuiz}
-          onFinish={() => {}}
-          onScore={() => {}}
-        />
-      );
-      const user = userEvent.setup();
-  
-      // Simulate selecting the incorrect answer
-      const incorrectOptionButton = screen.getByRole("button", {
-        name: "D Hyper Text Markup Leveler",
-      });
-      await user.click(incorrectOptionButton);
-  
-      // Submit the answer
-      const submitButton = screen.getByRole("button", { name: "Submit Answer" });
-      await user.click(submitButton);
-  
-      // Assert outcome for an incorrect answer
-      const incorrectOptionLetter = screen.getByRole("heading", { name: "D" });
-      const incorrectOption = incorrectOptionLetter.parentElement;
-      expect(incorrectOption).toHaveClass("answer-letter-background-wrong");
+      <QuestionScreen
+        activeQuiz={mockActiveQuiz}
+        onFinish={() => {}}
+        onScore={() => {}}
+      />
+    );
+    const user = userEvent.setup();
+
+    // Simulate selecting the incorrect answer
+    const incorrectOptionButton = screen.getByRole("button", {
+      name: "D Hyper Text Markup Leveler",
+    });
+    await user.click(incorrectOptionButton);
+
+    // Submit the answer
+    const submitButton = screen.getByRole("button", { name: "Submit Answer" });
+    await user.click(submitButton);
+
+    // Assert outcome for an incorrect answer
+    const incorrectOptionLetter = screen.getByRole("heading", { name: "D" });
+    const incorrectOption = incorrectOptionLetter.parentElement;
+    expect(incorrectOption).toHaveClass("answer-letter-background-wrong");
   });
 
-  test("disables button if no answer is selected", () => {});
+  test("submits answer without selecting an answer", async () => {
+    render(
+      <QuestionScreen
+        activeQuiz={mockActiveQuiz}
+        onFinish={() => {}}
+        onScore={() => {}}
+      />
+    );
+    const user = userEvent.setup();
+
+    // No error message is displayed
+    const errorImage = screen.queryByAltText("Error: No answer selected");
+    expect(errorImage).not.toBeInTheDocument();
+
+    // Simulates submitting an answer without selecting an answer option
+    const submitButton = screen.getByRole("button", { name: "Submit Answer" });
+    await user.click(submitButton);
+
+    // Error message is displayed
+    expect(screen.getByAltText("Error: No answer selected")).toBeInTheDocument();  });
 });
