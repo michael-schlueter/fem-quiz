@@ -159,4 +159,31 @@ describe("handles answers in Quiz", () => {
 
     expect(progressBar).toHaveStyle("width: 100%");
   });
+
+  test("disables answer options once answer has been submitted", async () => {
+    render(
+      <QuestionScreen
+        activeQuiz={mockActiveQuiz}
+        onFinish={() => {}}
+        onScore={() => {}}
+      />
+    );
+    const user = userEvent.setup();
+
+    // Simulate selecting the incorrect answer
+    const wrongtOptionButton = screen.getByRole("button", {
+      name: "D Hyper Text Markup Leveler",
+    });
+    await user.click(wrongtOptionButton);
+
+    // Submit the answer
+    const submitButton = screen.getByRole("button", { name: "Submit Answer" });
+    await user.click(submitButton);
+
+    // Alternative answer options are disabled
+    const correctOptionButton = screen.getByRole("button", {
+      name: "C Hyper Text Markup Language correct indicator",
+    });
+    expect(correctOptionButton).toBeDisabled();
+  });
 });
