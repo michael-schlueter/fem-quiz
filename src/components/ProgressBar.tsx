@@ -16,6 +16,7 @@ export default function ProgressBar({ progress }: ProgressBarProps) {
       <div className="bar-wrapper">
         <div
           className="bar"
+          data-testid="progress-bar"
           style={{
             width: progress + "%",
           }}

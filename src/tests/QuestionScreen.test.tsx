@@ -17,6 +17,17 @@ describe("handles answers in Quiz", () => {
         ],
         answer: "Hyper Text Markup Language",
       },
+      {
+        question:
+          "Which of the following is the correct structure for an HTML document?",
+        options: [
+          "<html><head></head><body></body></html>",
+          "<head><html></html><body></body></head>",
+          "<body><head></head><html></html></body>",
+          "<html><body></body><head></head></html>",
+        ],
+        answer: "<html><head></head><body></body></html>",
+      },
     ],
   };
 
@@ -119,5 +130,33 @@ describe("handles answers in Quiz", () => {
     // No error message is displayed
     const errorImage = screen.queryByAltText("Error: No answer selected");
     expect(errorImage).not.toBeInTheDocument();
+  });
+
+  test("updates progress bar on answering questions", async () => {
+    render(
+      <QuestionScreen
+        activeQuiz={mockActiveQuiz}
+        onFinish={() => {}}
+        onScore={() => {}}
+      />
+    );
+    const user = userEvent.setup();
+    // Check progress bar while first question
+    const progressBar = screen.getByTestId("progress-bar");
+    expect(progressBar).toHaveStyle("width: 50%");
+
+    // Simulate answering the first question
+    const firstOptionButton = screen.getByRole("button", {
+      name: "C Hyper Text Markup Language",
+    });
+    await user.click(firstOptionButton);
+    const submitButton = screen.getByRole("button", { name: "Submit Answer" });
+    await user.click(submitButton);
+    const nextQuestionButton = screen.getByRole("button", {
+      name: "Next Question",
+    });
+    await user.click(nextQuestionButton);
+
+    expect(progressBar).toHaveStyle("width: 100%");
   });
 });
