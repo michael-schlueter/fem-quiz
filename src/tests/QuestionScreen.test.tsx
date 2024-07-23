@@ -91,5 +91,33 @@ describe("handles answers in Quiz", () => {
     await user.click(submitButton);
 
     // Error message is displayed
-    expect(screen.getByAltText("Error: No answer selected")).toBeInTheDocument();  });
+    expect(
+      screen.getByAltText("Error: No answer selected")
+    ).toBeInTheDocument();
+  });
+
+  test("submits an selected answer", async () => {
+    render(
+      <QuestionScreen
+        activeQuiz={mockActiveQuiz}
+        onFinish={() => {}}
+        onScore={() => {}}
+      />
+    );
+    const user = userEvent.setup();
+
+    // Simulate selecting an answer
+    const answerOptionButton = screen.getByRole("button", {
+      name: "C Hyper Text Markup Language",
+    });
+    await user.click(answerOptionButton);
+
+    // Simulate submitting the answer
+    const submitButton = screen.getByRole("button", { name: "Submit Answer" });
+    await user.click(submitButton);
+
+    // No error message is displayed
+    const errorImage = screen.queryByAltText("Error: No answer selected");
+    expect(errorImage).not.toBeInTheDocument();
+  });
 });
