@@ -216,4 +216,35 @@ describe("handles answers in Quiz", () => {
     // number of questions increases to 2
     expect(questionNumber).toHaveTextContent("Question 2");
   });
+
+  test("changes question after submitting an answer", async () => {
+    render(
+      <QuestionScreen
+        activeQuiz={mockActiveQuiz}
+        onFinish={() => {}}
+        onScore={() => {}}
+      />
+    );
+    const user = userEvent.setup();
+
+        // Simulate selecting an answer
+        const answerOptionButton = screen.getByRole("button", {
+          name: "C Hyper Text Markup Language",
+        });
+        await user.click(answerOptionButton);
+    
+        // Simulate submitting the answer
+        const submitButton = screen.getByRole("button", { name: "Submit Answer" });
+        await user.click(submitButton);
+
+        // Simulate navigating to the next question
+        const nextQuestionButton = screen.getByRole("button", { name: "Next Question"});
+        await user.click(nextQuestionButton);
+
+        // Next question is displayed
+        const questionHeading = screen.getByRole("heading", {
+          name: "Which of the following is the correct structure for an HTML document?"
+        });
+        expect(questionHeading).toBeInTheDocument();
+  });
 });
