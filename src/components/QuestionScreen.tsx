@@ -131,7 +131,7 @@ export default function QuestionScreen({
                 {option === activeQuestion.answer && answerStatus !== "" ? (
                   <img
                     className="answer-status"
-                    src="./assets/images/icon-correct.svg"
+                    src="/assets/images/icon-correct.svg"
                     alt="correct indicator"
                   />
                 ) : null}
@@ -140,7 +140,7 @@ export default function QuestionScreen({
                 answerStatus === "incorrect" ? (
                   <img
                     className="answer-status"
-                    src="./assets/images/icon-incorrect.svg"
+                    src="/assets/images/icon-incorrect.svg"
                     alt="incorrect indicator"
                   />
                 ) : null}
@@ -159,7 +159,7 @@ export default function QuestionScreen({
           <div className="error-message">
             <img
               className="error-icon"
-              src="./assets/images/icon-error.svg"
+              src="/assets/images/icon-error.svg"
               alt="Error: No answer selected"
             />
             <p>Please select an answer</p>
