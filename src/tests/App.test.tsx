@@ -7,17 +7,19 @@ describe("App Component", () => {
 
   beforeEach(() => {
     user = userEvent.setup();
-    render(<App />)
-  })
+    render(<App />);
+  });
 
   const selectAndSubmitAnswer = async (answerName: string) => {
     const optionButton = screen.getByRole("button", { name: answerName });
     await user.click(optionButton);
-    const submitButton = screen.getByRole("button", { name: "Submit Answer"});
+    const submitButton = screen.getByRole("button", { name: "Submit Answer" });
     await user.click(submitButton);
-    const nextQuestionButton = screen.getByRole("button", { name: "Next Question"});
+    const nextQuestionButton = screen.getByRole("button", {
+      name: "Next Question",
+    });
     await user.click(nextQuestionButton);
-  }
+  };
 
   test("toggles dark mode on/off", async () => {
     // initial mode is light mode
@@ -34,6 +36,26 @@ describe("App Component", () => {
 
     // toggles light mode
     await user.click(toggleButton);
+
+    // "dark" class is removed from the body
+    expect(document.body).not.toHaveClass("dark");
+  });
+
+  test("toggles dark mode on/off using keyboard navigation", async () => {
+    // initial mode is light mode
+    expect(document.body).not.toHaveClass("dark");
+
+    // navigate to dark mode button
+    await user.tab();
+
+    // toggles dark mode
+    await user.keyboard("{Enter}");
+
+    // "dark" class is added to the body
+    expect(document.body).toHaveClass("dark");
+
+    // toggles light mode
+    await user.keyboard("{Enter}");
 
     // "dark" class is removed from the body
     expect(document.body).not.toHaveClass("dark");
@@ -99,8 +121,9 @@ describe("App Component", () => {
     await user.click(playAgainButton);
 
     // displays WelcomeScreen
-    const welcomeHeading = screen.getByRole("heading", { name: "Welcome to the" });
+    const welcomeHeading = screen.getByRole("heading", {
+      name: "Welcome to the",
+    });
     expect(welcomeHeading).toBeInTheDocument();
   });
 });
-
