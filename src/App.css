@@ -205,11 +205,27 @@ header {
   }
 }
 
+@media (max-width: 1024px) {
+  body {
+    padding-inline: 64px;
+  }
+
+  header {
+    margin-top: 40px;
+    margin-bottom: 50px;
+  }
+
+  .main-wrapper {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     padding-inline: 24px;
   }
 
+  /* TODO: CHECK IF THIS SHOULD BE APPLIED AT ALL */
   h5 {
     font-size: var(--fs-300);
   }
@@ -220,7 +236,7 @@ header {
   }
 
   .logo-container {
-    padding: 11px;
+    padding: 5.71px;
     margin-right: 16px;
   }
 
@@ -245,26 +261,6 @@ header {
   .switch-icon {
     height: 16px;
     width: 16px;
-  }
-
-  .main-wrapper {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 1024px) {
-  body {
-    padding-inline: 64px;
-  }
-
-  header {
-    height: 56px;
-    margin-top: 40px;
-    margin-bottom: 50px;
-  }
-
-  .main-wrapper {
-    flex-direction: column;
   }
 }
 
@@ -350,53 +346,6 @@ header {
   background-color: hsla(278, 100%, 95%);
 }
 
-@media (max-width: 768px) {
-  h2,
-  h3 {
-    font-size: var(--fs-650);
-  }
-
-  .sub-heading {
-    font-size: var(--fs-150);
-  }
-
-  .welcome-screen__welcome {
-    gap: 16px;
-    padding-top: 32px;
-    padding-bottom: 40px;
-  }
-
-  .categories {
-    gap: 12px;
-    width: 100%;
-  }
-
-  .categories > li {
-    width: 100%;
-    border-radius: 12px;
-  }
-
-  .quiz-category__content {
-    padding: 12px;
-    gap: 16px;
-  }
-
-  .icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-  }
-
-  .quiz-icon {
-    width: 28.57px;
-    height: 28.57px;
-  }
-
-  .quiz-category__title {
-    font-size: var(--fs-250);
-  }
-}
-
 @media (max-width: 1024px) {
   .welcome-screen__welcome {
     gap: 16px;
@@ -415,6 +364,49 @@ header {
 
   .quiz-category__content {
     padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  h2,
+  h3 {
+    font-size: var(--fs-650);
+  }
+
+  .sub-heading {
+    font-size: var(--fs-150);
+  }
+
+  .welcome-screen__welcome {
+    padding-top: 32px;
+    padding-bottom: 40px;
+  }
+
+  .categories {
+    gap: 12px;
+  }
+
+  .categories > li {
+    border-radius: 12px;
+  }
+
+  .quiz-category__content {
+    gap: 16px;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  .quiz-icon {
+    width: 28.57px;
+    height: 28.57px;
+  }
+
+  .quiz-category__title {
+    font-size: var(--fs-250);
   }
 }
 
@@ -542,16 +534,35 @@ header {
   margin-top: 34px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .question-wrapper {
     flex-direction: column;
-    padding-top: 32px;
-    gap: 40px;
+    gap: 64px;
   }
 
   .question {
     display: flex;
     flex-direction: column;
+  }
+
+  .question > .sub-heading {
+    margin-bottom: 27px;
+  }
+
+  .progress-wrapper {
+    margin-top: 40px;
+  }
+
+  .answer-button {
+    padding-block: 12px;
+    padding-inline: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .question-wrapper {
+    padding-top: 32px;
+    gap: 40px;
   }
 
   .question > .sub-heading {
@@ -570,7 +581,6 @@ header {
 
   .answer-button {
     padding-block: 9px;
-    padding-inline: 12px;
     gap: 16px;
   }
 
@@ -603,31 +613,6 @@ header {
   .error-icon {
     height: 32px;
     width: 32px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .question-wrapper {
-    flex-direction: column;
-    gap: 64px;
-  }
-
-  .question {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .question > .sub-heading {
-    margin-bottom: 27px;
-  }
-
-  .progress-wrapper {
-    margin-top: 40px;
-  }
-
-  .answer-button {
-    padding-block: 12px;
-    padding-inline: 12px;
   }
 }
 
@@ -667,9 +652,26 @@ header {
   padding-block: 14px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .completion-wrapper {
     flex-direction: column;
+    gap: 64px;
+  }
+
+  .result-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .score-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .completion-wrapper {
     margin-top: 32px;
     gap: 40px;
   }
@@ -690,37 +692,8 @@ header {
     font-size: var(--fs-750);
   }
 
-  .result-header {
-    display: flex;
-    align-items: center;
-  }
-
   .result-header > h5 {
     padding-block: 14px;
-  }
-
-  .score-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .completion-wrapper {
-    flex-direction: column;
-    gap: 64px;
-  }
-
-  .result-header {
-    display: flex;
-    align-items: center;
-  }
-
-  .score-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
   }
 }
 
