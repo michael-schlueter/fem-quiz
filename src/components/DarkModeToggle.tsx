@@ -29,6 +29,7 @@ export default function DarkModeToggle({
         id="darkmode"
         onClick={handleToggleDarkMode}
         data-testid="darkmode-switch"
+        aria-label="darkmode toggle"
       >
         <Switch.Thumb className="switch-thumb" />
       </Switch.Root>
