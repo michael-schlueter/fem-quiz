@@ -68,7 +68,7 @@ body {
   background-size: cover;
   background-color: var(--clr-lightgrey);
   padding-inline: 140px;
-  min-height: 100svh;
+  min-height: 100dvh;
 }
 
 body.dark {
@@ -134,8 +134,7 @@ h5 {
 }
 
 header {
-  margin-block: 85px;
-  height: 56px;
+  padding-block: 85px;
   display: flex;
   align-items: center;
 }
@@ -146,7 +145,6 @@ header {
 }
 
 .logo-container {
-  padding: 8px;
   margin-right: 24px;
 }
 
@@ -211,8 +209,8 @@ header {
   }
 
   header {
-    margin-top: 40px;
-    margin-bottom: 50px;
+    padding-top: 40px;
+    padding-bottom: 50px;
   }
 
   .main-wrapper {
@@ -225,18 +223,15 @@ header {
     padding-inline: 24px;
   }
 
-  /* TODO: CHECK IF THIS SHOULD BE APPLIED AT ALL */
   h5 {
     font-size: var(--fs-300);
   }
 
   header {
-    height: 72px;
-    margin-block: 0;
+    padding-block: 16px;
   }
 
   .logo-container {
-    padding: 5.71px;
     margin-right: 16px;
   }
 
