@@ -86,8 +86,37 @@ describe("App Component", () => {
       await selectAndSubmitAnswer(answer);
     }
 
-    // Score on the completion screen should be 5
+    // score on the completion screen should be 5
     const score = screen.getByRole("heading", { name: "5" });
+    expect(score).toBeInTheDocument();
+  });
+
+  test("displays correct score after finishing quiz with keyboard navigation", async () => {
+    // picks category
+    await user.tab();
+    await user.tab();
+    await user.keyboard("{Enter}");
+
+    // picks and submit answers
+    const pickAndSubmitAnswer = async () => {
+      await user.tab();
+      await user.tab();
+      await user.keyboard("{Enter}");
+      for (let i = 0; i < 4; i++) {
+        await user.tab();
+      }
+      await user.keyboard("{Enter}");
+      await user.tab();
+      await user.tab();
+      await user.keyboard("{Enter}");
+    };
+
+    for (let i = 0; i < 10; i++) {
+      await pickAndSubmitAnswer();
+    }
+
+    // score on the completion screen should be 4
+    const score = screen.getByRole("heading", { name: "4" });
     expect(score).toBeInTheDocument();
   });
 
@@ -119,6 +148,41 @@ describe("App Component", () => {
     // restarts quiz
     const playAgainButton = screen.getByRole("button", { name: "Play Again" });
     await user.click(playAgainButton);
+
+    // displays WelcomeScreen
+    const welcomeHeading = screen.getByRole("heading", {
+      name: "Welcome to the",
+    });
+    expect(welcomeHeading).toBeInTheDocument();
+  });
+
+  test("restarts quiz after finishing it using keyboard navigation", async () => {
+    // picks category
+    await user.tab();
+    await user.tab();
+    await user.keyboard("{Enter}");
+
+    // picks and submit answers
+    const pickAndSubmitAnswer = async () => {
+      await user.tab();
+      await user.tab();
+      await user.keyboard("{Enter}");
+      for (let i = 0; i < 4; i++) {
+        await user.tab();
+      }
+      await user.keyboard("{Enter}");
+      await user.tab();
+      await user.tab();
+      await user.keyboard("{Enter}");
+    };
+
+    for (let i = 0; i < 10; i++) {
+      await pickAndSubmitAnswer();
+    }
+
+    await user.tab();
+    await user.tab();
+    await user.keyboard("{Enter}");
 
     // displays WelcomeScreen
     const welcomeHeading = screen.getByRole("heading", {
