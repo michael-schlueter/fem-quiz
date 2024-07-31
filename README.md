@@ -4,7 +4,8 @@
 
 
 ## General Information
-- I undertook this project to further solidify my knowledge of the fundamentals in CSS/HTML/JavaScript. 
+- I undertook this project to further solidify my knowledge of the fundamentals in CSS/HTML/JavaScript.
+- This is the first project from Frontend Mentor which I really worked on, so it was also about getting used to the workflow.
 - The appeal in this challenge was to use a ready-made Figma design. This allowed me to gain more experience in working with Figma.
 - I also took on the bonus task of this challenge which was the implementation of a (persisted) dark-mode.
 - I extended this project further by adding tests for it which was not a necessary part of the challenge. I recently started learning about testing. So I used this project to get my first practical experience in writing tests.
