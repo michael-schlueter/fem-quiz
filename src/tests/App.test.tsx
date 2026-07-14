@@ -3,14 +3,16 @@ import userEvent from "@testing-library/user-event";
 import App from "../App";
 
 describe("App Component", () => {
-  let user: ReturnType<typeof userEvent.setup>;
-
-  beforeEach(() => {
-    user = userEvent.setup();
+  const setup = () => {
+    const user = userEvent.setup();
     render(<App />);
-  });
+    return user;
+  };
 
-  const selectAndSubmitAnswer = async (answerName: string) => {
+  const selectAndSubmitAnswer = async (
+    user: ReturnType<typeof userEvent.setup>,
+    answerName: string
+  ) => {
     const optionButton = screen.getByRole("button", { name: answerName });
     await user.click(optionButton);
     const submitButton = screen.getByRole("button", { name: "Submit Answer" });
@@ -21,7 +23,22 @@ describe("App Component", () => {
     await user.click(nextQuestionButton);
   };
 
+  const pickAndSubmitAnswer = async (user: ReturnType<typeof userEvent.setup>) => {
+    await user.tab();
+    await user.tab();
+    await user.keyboard("{Enter}");
+    for (let i = 0; i < 4; i++) {
+      await user.tab();
+    }
+    await user.keyboard("{Enter}");
+    await user.tab();
+    await user.tab();
+    await user.keyboard("{Enter}");
+  };
+
   test("toggles dark mode on/off", async () => {
+    const user = setup();
+
     // initial mode is light mode
     expect(document.body).not.toHaveClass("dark");
 
@@ -42,6 +59,8 @@ describe("App Component", () => {
   });
 
   test("toggles dark mode on/off using keyboard navigation", async () => {
+    const user = setup();
+
     // initial mode is light mode
     expect(document.body).not.toHaveClass("dark");
 
@@ -62,6 +81,8 @@ describe("App Component", () => {
   });
 
   test("displays correct score after finishing quiz", async () => {
+    const user = setup();
+
     // starts quiz
     const categoryButton = screen.getByRole("button", {
       name: "icon for quiz category HTML HTML",
@@ -83,7 +104,7 @@ describe("App Component", () => {
     ];
 
     for (const answer of answers) {
-      await selectAndSubmitAnswer(answer);
+      await selectAndSubmitAnswer(user, answer);
     }
 
     // score on the completion screen should be 5
@@ -92,27 +113,16 @@ describe("App Component", () => {
   });
 
   test("displays correct score after finishing quiz with keyboard navigation", async () => {
+    const user = setup();
+
     // picks category
     await user.tab();
     await user.tab();
     await user.keyboard("{Enter}");
 
     // picks and submit answers
-    const pickAndSubmitAnswer = async () => {
-      await user.tab();
-      await user.tab();
-      await user.keyboard("{Enter}");
-      for (let i = 0; i < 4; i++) {
-        await user.tab();
-      }
-      await user.keyboard("{Enter}");
-      await user.tab();
-      await user.tab();
-      await user.keyboard("{Enter}");
-    };
-
     for (let i = 0; i < 10; i++) {
-      await pickAndSubmitAnswer();
+      await pickAndSubmitAnswer(user);
     }
 
     // score on the completion screen should be 4
@@ -121,6 +131,8 @@ describe("App Component", () => {
   });
 
   test("restarts quiz after finishing it", async () => {
+    const user = setup();
+
     // starts quiz
     const categoryButton = screen.getByRole("button", {
       name: "icon for quiz category HTML HTML",
@@ -142,7 +154,7 @@ describe("App Component", () => {
     ];
 
     for (const answer of answers) {
-      await selectAndSubmitAnswer(answer);
+      await selectAndSubmitAnswer(user, answer);
     }
 
     // restarts quiz
@@ -157,27 +169,16 @@ describe("App Component", () => {
   });
 
   test("restarts quiz after finishing it using keyboard navigation", async () => {
+    const user = setup();
+
     // picks category
     await user.tab();
     await user.tab();
     await user.keyboard("{Enter}");
 
     // picks and submit answers
-    const pickAndSubmitAnswer = async () => {
-      await user.tab();
-      await user.tab();
-      await user.keyboard("{Enter}");
-      for (let i = 0; i < 4; i++) {
-        await user.tab();
-      }
-      await user.keyboard("{Enter}");
-      await user.tab();
-      await user.tab();
-      await user.keyboard("{Enter}");
-    };
-
     for (let i = 0; i < 10; i++) {
-      await pickAndSubmitAnswer();
+      await pickAndSubmitAnswer(user);
     }
 
     await user.tab();
