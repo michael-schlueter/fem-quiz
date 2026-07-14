@@ -22,7 +22,8 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-    "no-unused-vars": "warn", // warning, not error
+    "no-unused-vars": "off", // superseded by @typescript-eslint/no-unused-vars, which understands type-only param names
+    "@typescript-eslint/no-unused-vars": "warn", // warning, not error
     "vitest/expect-expect": "off", // eliminate distracting red squiggles while writing tests
     "react/prop-types": "off", // turn off props validation
   },

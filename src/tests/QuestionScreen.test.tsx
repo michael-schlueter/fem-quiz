@@ -52,8 +52,7 @@ describe("handles answers in Quiz", () => {
     await user.click(submitButton);
 
     // Assert outcome for a correct answer
-    const correctOptionLetter = screen.getByRole("heading", { name: "C" });
-    const correctOption = correctOptionLetter.parentElement;
+    const correctOption = screen.getByTestId("answer-letter-C");
     expect(correctOption).toHaveClass("answer-letter-background-correct");
   });
 
@@ -78,8 +77,7 @@ describe("handles answers in Quiz", () => {
     await user.click(submitButton);
 
     // Assert outcome for an incorrect answer
-    const incorrectOptionLetter = screen.getByRole("heading", { name: "D" });
-    const incorrectOption = incorrectOptionLetter.parentElement;
+    const incorrectOption = screen.getByTestId("answer-letter-D");
     expect(incorrectOption).toHaveClass("answer-letter-background-wrong");
   });
 

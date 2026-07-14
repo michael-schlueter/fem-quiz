@@ -115,6 +115,7 @@ export default function QuestionScreen({
                 disabled={answerStatus !== ""}
               >
                 <div
+                  data-testid={`answer-letter-${["A", "B", "C", "D"][index]}`}
                   className={getClassName(
                     option,
                     "answer-letter",
